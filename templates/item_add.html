@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>print_users</title>
+  </head>
+  <body>
+    <div>
+      CATEGORY LIST
+      <table border="1">
+        <thead></thead>
+
+        <tbody>
+          {% for cat in category %}
+          <tr>
+            <td>{{ cat[0] }}</td>
+            <td>{{ cat[1] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <br />
+    <div>
+      <form action="/return_to_register" , method="post">
+        <div>Code: <input type="text" name="code" value="" /></div>
+        <div>Name: <input type="text" name="name" value="" /></div>
+        <div>Price: <input type="text" name="price" value="" /></div>
+        <div>Stock: <input type="text" name="stock" value="" /></div>
+        <input type="submit" name="send" value="add" />
+        <input
+          type="submit"
+          name="send"
+          value="cancel"
+          style="display: block"
+        />
+      </form>
+    </div>
+  </body>
+</html>

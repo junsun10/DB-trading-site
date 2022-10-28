@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DB Trading Site</title>
+  </head>
+  <body>
+    {% if current_user[0] == "admin" %}
+    <div>Admin function</div>
+    <form action="/admin_function" method="post">
+      <input type="submit" name="send" value="users info" />
+      <input type="submit" name="send" value="trades info" />
+    </form>
+    {% else %}
+    <div>Login Success!</div>
+    {% endif %}
+    <div>======================================</div>
+    <div>
+      <table border="1">
+        <thead>
+          <th>popular category</th>
+          <th>best buyer</th>
+          <th>best seller</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ best[0] }}</td>
+            <td>{{ best[1] }}</td>
+            <td>{{ best[2] }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        current user: {{ current_user[0] }} /
+        <form action="\return" method="post" style="display: inline">
+          <input type="submit" name="logout" value="Logout" />
+        </form>
+      </div>
+      <div>balance: {{ current_user[1] }}</div>
+      <div>rating: {{ current_user[2] }}</div>
+    </div>
+    <div>
+      <h1>ITEMS</h1>
+      <form action="/item_add" , method="post">
+        <input type="submit" name="add" value="add" />
+      </form>
+      <table border="1">
+        <thead>
+          <th>code</th>
+          <th>name</th>
+          <th>price</th>
+          <th>stock</th>
+          <th>seller</th>
+          <th></th>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr>
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+            <td>{{ item[3] }}</td>
+            <td>{{ item[4] }}</td>
+            <td>
+              <form action="/item_buy" , method="post">
+                <input type="hidden" name="code" value="{{ item[0] }}" />
+                <input type="hidden" name="name" value="{{ item[1] }}" />
+                <input type="hidden" name="price" value="{{ item[2] }}" />
+                <input type="hidden" name="stock" value="{{ item[3] }}" />
+                <input type="hidden" name="seller" value="{{ item[4] }}" />
+                <input type="submit" name="send" value="buy" />
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div>{{ stock }}</div>
+    <div>{{ s }}</div>
+  </body>
+</html>

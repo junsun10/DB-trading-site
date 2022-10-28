@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>item trade</title>
+  </head>
+  <body>
+    <div>Your balance: {{ current_user[1] }}</div>
+    <div>Your rating: {{ current_user[2] }}</div>
+    <br />
+    <div>Total price: {{ total_price }}</div>
+    <div>Discount price: {{ discount_price }}</div>
+    <div>========================================</div>
+    <div>Final price: {{ total_price - discount_price }}</div>
+    <form action="/confirm_buying" method="post">
+      <input type="hidden" name="stock" value="{{ stock }}" />
+      <input type="hidden" name="seller" value="{{ seller }}" />
+      <input type="submit" name="send" value="confirm" />
+      <input type="submit" name="send" value="cancel" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>print_users</title>
+  </head>
+  <body>
+    <div>
+      ITEM INFO
+      <table border="1">
+        <thead>
+          <th>code</th>
+          <th>name</th>
+          <th>price</th>
+          <th>stock</th>
+          <th>seller</th>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+            <td>{{ item[3] }}</td>
+            <td>{{ item[4] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br />
+    <div>Your balance: {{ current_user[1] }}</div>
+    <div>Your rating: {{ current_user[2] }}</div>
+    <br />
+    <form action="/item_buying" , method="post">
+      <div>How many?: <input type="text" name="stock" value="" /></div>
+      <input type="hidden" name="seller" value="{{ item[4] }}" />
+      <input type="hidden" name="price" value="{{ item[2] }}" />
+      <input type="submit" name="send" value="buy" />
+      <input type="submit" name="send" value="cancel" style="display: block" />
+    </form>
+  </body>
+</html>
